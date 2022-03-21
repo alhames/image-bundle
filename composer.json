@@ -1,0 +1,31 @@
+{
+  "name": "alhames/image-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony Image Bundle",
+  "keywords": ["image", "bundle", "symfony"],
+  "homepage": "https://github.com/alhames/image-bundle",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Pavel Logachev",
+      "email": "alhames@mail.ru",
+      "homepage": "https://alhames.ru/"
+    }
+  ],
+  "require": {
+    "alhames/phphelper-str": "dev-main",
+    "ext-fileinfo": "*",
+    "ext-gd": "*",
+    "guzzlehttp/guzzle": "^7.4",
+    "jenssegers/imagehash": "^0.8",
+    "php": "^7.4 || ^8.0",
+    "symfony/framework-bundle": "^5.0|^6.0"
+  },
+  "repositories": [],
+  "autoload": {
+    "psr-4": {
+      "Alhames\\ImageBundle\\": "src/"
+    }
+  }
+}
