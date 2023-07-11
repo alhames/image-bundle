@@ -3,8 +3,8 @@
 namespace Alhames\ImageBundle;
 
 use Alhames\ImageBundle\ImageEditProvider\GdImageEditProvider;
+use Alhames\String\Str;
 use GuzzleHttp\RequestOptions;
-use PhpHelper\Str;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -49,18 +49,12 @@ class ImageManager
         $this->provider = new GdImageEditProvider();
     }
 
-    /**
-     * @return int|string|array
-     */
-    public function getOption(string $key)
+    public function getOption(string $key): array|int|string
     {
         return $this->options[$key];
     }
 
-    /**
-     * @param int|string|array $value
-     */
-    public function setOption(string $key, $value): self
+    public function setOption(string $key, array|int|string $value): self
     {
         $this->options[$key] = $value;
 
@@ -164,12 +158,10 @@ class ImageManager
                 'file' => $path,
                 'data' => null,
             ]);
+        } catch (ImageException $e) {
+            throw $e;
         } catch (\Throwable $e) {
-            if ($e instanceof ImageException) {
-                throw $e;
-            } else {
-                throw new ImageException($e->getMessage(), ImageException::ERR_WRITE, $e);
-            }
+            throw new ImageException($e->getMessage(), ImageException::ERR_WRITE, $e);
         }
     }
 

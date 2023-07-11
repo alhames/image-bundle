@@ -5,7 +5,6 @@
   "keywords": ["image", "bundle", "symfony"],
   "homepage": "https://github.com/alhames/image-bundle",
   "license": "MIT",
-  "version": "1.0.0",
   "authors": [
     {
       "name": "Pavel Logachev",
@@ -14,13 +13,13 @@
     }
   ],
   "require": {
-    "alhames/phphelper-str": "dev-main",
+    "php": "^8.1",
     "ext-fileinfo": "*",
     "ext-gd": "*",
-    "guzzlehttp/guzzle": "^7.4",
-    "jenssegers/imagehash": "^0.8",
-    "php": "^7.4 || ^8.0",
-    "symfony/framework-bundle": "^5.0|^6.0"
+    "alhames/string": "^1.0",
+    "guzzlehttp/guzzle": "^7.7",
+    "jenssegers/imagehash": "^0.9",
+    "symfony/framework-bundle": "^6.3"
   },
   "repositories": [],
   "autoload": {

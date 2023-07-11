@@ -88,7 +88,7 @@ class GdImageEditProvider
         $resource = $this->getResource($image);
         $hasher = new ImageHash($hashAlgorithms[$type], $driver);
 
-        return $hasher->hash($resource)->toBytes();
+        return $hasher->hash($resource)->toBits();
     }
 
     /**
