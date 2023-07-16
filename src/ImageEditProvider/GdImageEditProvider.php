@@ -23,13 +23,13 @@ class GdImageEditProvider
     {
         $destinationRatio = $destinationWidth / $destinationHeight;
         $sourceWidth = $sourceImage->getWidth();
-        $sourceHeight = $sourceWidth / $destinationRatio;
+        $sourceHeight = (int) floor($sourceWidth / $destinationRatio);
         if ($sourceHeight > $sourceImage->getHeight()) {
             $sourceHeight = $sourceImage->getHeight();
             $sourceWidth = $sourceHeight * $destinationRatio;
         }
-        $leftOffset = ($sourceImage->getWidth() - $sourceWidth) / 2;
-        $topOffset = ($sourceImage->getHeight() - $sourceHeight) / 2;
+        $leftOffset = (int) floor(($sourceImage->getWidth() - $sourceWidth) / 2);
+        $topOffset = (int) floor(($sourceImage->getHeight() - $sourceHeight) / 2);
 
         $image = imagecreatetruecolor($destinationWidth, $destinationHeight);
         $color = imagecolorallocate($image, ...$this->background);
@@ -88,7 +88,7 @@ class GdImageEditProvider
         $resource = $this->getResource($image);
         $hasher = new ImageHash($hashAlgorithms[$type], $driver);
 
-        return $hasher->hash($resource)->toBits();
+        return $hasher->hash($resource)->toBytes();
     }
 
     /**

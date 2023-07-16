@@ -18,7 +18,7 @@
     "ext-gd": "*",
     "alhames/string": "^1.0",
     "guzzlehttp/guzzle": "^7.7",
-    "jenssegers/imagehash": "^0.9",
+    "jenssegers/imagehash": "0.8.*",
     "symfony/framework-bundle": "^6.3"
   },
   "repositories": [],
