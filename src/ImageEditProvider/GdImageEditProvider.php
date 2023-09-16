@@ -26,7 +26,7 @@ class GdImageEditProvider
         $sourceHeight = (int) floor($sourceWidth / $destinationRatio);
         if ($sourceHeight > $sourceImage->getHeight()) {
             $sourceHeight = $sourceImage->getHeight();
-            $sourceWidth = $sourceHeight * $destinationRatio;
+            $sourceWidth = (int) floor($sourceHeight * $destinationRatio);
         }
         $leftOffset = (int) floor(($sourceImage->getWidth() - $sourceWidth) / 2);
         $topOffset = (int) floor(($sourceImage->getHeight() - $sourceHeight) / 2);

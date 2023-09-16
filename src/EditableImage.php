@@ -47,7 +47,7 @@ class EditableImage
     public function setMaxWidth(int $width): self
     {
         if ($width < $this->image->getWidth()) {
-            $this->newHeight = $width / ($this->image->getWidth() / $this->image->getHeight());
+            $this->newHeight = (int) round($width / ($this->image->getWidth() / $this->image->getHeight()));
             $this->newWidth = $width;
         }
 
@@ -69,7 +69,7 @@ class EditableImage
     public function setMaxHeight(int $height): self
     {
         if ($height < $this->image->getHeight()) {
-            $this->newWidth = $height * ($this->image->getWidth() / $this->image->getHeight());
+            $this->newWidth = (int) round($height * ($this->image->getWidth() / $this->image->getHeight()));
             $this->newHeight = $height;
         }
 
