@@ -19,7 +19,7 @@
     "alhames/string": "^1.0",
     "guzzlehttp/guzzle": "^7.7",
     "jenssegers/imagehash": "0.8.*",
-    "symfony/framework-bundle": "^6.3"
+    "symfony/framework-bundle": "^6.3|^7.0"
   },
   "repositories": [],
   "autoload": {

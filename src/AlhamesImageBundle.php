@@ -8,7 +8,7 @@ class AlhamesImageBundle extends Bundle
 {
     public function getPath(): string
     {
-        if (null === $this->path) {
+        if (!isset($this->path)) {
             $this->path = \dirname(__DIR__);
         }
 
