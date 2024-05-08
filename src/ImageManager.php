@@ -165,10 +165,10 @@ class ImageManager
         }
     }
 
-    public function convertTo(EditableImage $image): Image
+    public function convertTo(EditableImage $image, bool $force = false): Image
     {
         $sourceImage = $image->getSourceImage();
-        if (!$image->isChanged()) {
+        if (!$force && !$image->isChanged()) {
             return $sourceImage;
         }
 
@@ -283,6 +283,11 @@ class ImageManager
 
         $fInfo = new \finfo(FILEINFO_MIME_TYPE);
         $info['mime-type'] = $isFile ? $fInfo->file($file) : $fInfo->buffer($data);
+        if ('application/octet-stream' === $info['mime-type']) {
+            // Sometimes fInfo can't get mime type correctly
+            $size = $isFile ? getimagesize($file) : getimagesizefromstring($data);
+            $info['mime-type'] = $size['mime'] ?? 'application/octet-stream';
+        }
         if (!isset($this->mimeTypes[$info['mime-type']])) {
             throw new ImageException(sprintf('Mime type "%s" is not supported.', $info['mime-type']), ImageException::ERR_TYPE);
         }
@@ -292,7 +297,9 @@ class ImageManager
             throw new ImageException(sprintf('Type "%s" is not supported.', $info['type']), ImageException::ERR_TYPE);
         }
 
-        $size = $isFile ? getimagesize($file) : getimagesizefromstring($data);
+        if (!isset($size)) {
+            $size = $isFile ? getimagesize($file) : getimagesizefromstring($data);
+        }
         if (!$size) {
             throw new ImageException('The file must be an image.', ImageException::ERR_TYPE);
         }
